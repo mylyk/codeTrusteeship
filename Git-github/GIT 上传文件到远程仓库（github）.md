@@ -24,6 +24,8 @@
 3. 将本地内容推送到 **github** 仓库下命令
    * `git remote add origin (你仓库的 ssh 或者 https 地址)`
    * **注意：** 第一次推送时 **github** 上的仓库并非是空的，他们默认创建一个 **README** 的文档，因此需要将两者进行合并。<br> 语法：`git pull --rebase origin master` 
+4. 更本地代码
+   * `git pull`  更新本地代码
 
 
 
