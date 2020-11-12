@@ -192,11 +192,67 @@
 #### 1.6 webpack中配置Vue
 
 1. 安装（因为我们后续在实际项目中也会使用vue，所以此处并不是开发是伊依赖）<br>`npm install vue -save` 
+
 2. Vue的三种使用方法
    * 下载 *vue.js* 文件引用使用
    * CDN应用使用
    * npm 安装使用：将vue当作一个模块来使用
+   
 3. vue初期开发时模式分为两种：
    * runtime-only  代码中，不可以有任何的*template* 
    * runtime-compiler 
+   
+4. 在 *webpack.config.js* 文件增加 **resolve** 属性：<br>
+
+   ```js
+   resolve:{
+       //alias 别名
+       alias:{
+         'vue$':'vue/dist/vue.esm.js'
+       }
+     }
+   ```
+
+   
+
+#### 1.7  vue中 template 和 el 
+
+> SPA  单页面复应用，多页面跳转时通过（vue-router）前端路由实现
+
+1. el 和 template 的区别
+
+   * 之前我们定义的Vue实例中，我们定义了el属性，用于和index.html中的*#app* 进行绑定，让Vue实例之后可以管理它其中的内容
+
+   * 这里，我们可以将DIV元素中的 *{{message}}* 内容删掉，只保留一个基本的有ID的div元素
+
+   * 如果我们希望在其中显示*{{message}}* 的内容，我们可以在定义一个 **template** 属性<br>
+
+     ```js
+     new Vue({
+       el:'#app',
+       template:`
+       <h3>{{message}}</h3>
+       `,
+       data:{
+         message:'这是通过webpack打包的vue模块展示出阿来'
+       }
+     });
+     ```
+
+     **注意：**当代码中有 **el** 和 **template** 会将 **template** 中的内容替换到，HTML中的 *el* 指向的元素位置。
+
+2. webpack 中 ***.vue*** 后缀文件的处理
+
+   * 安装 `vue-loader` 和  `vue-template-compiler` <br>`npm install vue-loader vue-template-compiler --save-dev` 
+
+   * 修改配置文件<br>
+
+     ```js
+     {
+       test:/\.vue$/,
+       use:['vue-loader']
+     }
+     ```
+
+     **注意：** 这样运行后会报错：*vue-loader was used without the ….* ，在配置文件中修改 **vue-loader** 的版本后在执行 `npm install` 重新跑一下 **node** 他会自动安装我们刚才在配置文件中修改的版本。
 
