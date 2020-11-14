@@ -301,8 +301,9 @@
 #### 9.7 webpack中配置Vue
 
 * 安装：`npm install vue` 
+* 详细步骤转到 **webpack学习复习章节**
 
-####  plugin的使用
+####  9.8 plugin的使用
 
 
 

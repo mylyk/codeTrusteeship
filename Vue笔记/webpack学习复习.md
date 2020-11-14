@@ -213,7 +213,9 @@
      }
    ```
 
-   
+   还可以增加 `extensions` 属性，用于省略引入模块时的后缀名，语法：<br>`extensions:['.js','.css','.vue']` 
+
+
 
 #### 1.7  vue中 template 和 el 
 
@@ -255,4 +257,19 @@
      ```
 
      **注意：** 这样运行后会报错：*vue-loader was used without the ….* ，在配置文件中修改 **vue-loader** 的版本后在执行 `npm install` 重新跑一下 **node** 他会自动安装我们刚才在配置文件中修改的版本。
+   
+3. 安装 **stylus-loader** 
+
+   * 安装命令：<br> `npm install stylus stylus-loader --save-dev` 
+
+   * webpack.config.js 配置：<br>
+
+     ```js
+     {
+       test: /\.styl$/,
+       loader: 'stylus-loader',
+     }
+     ```
+
+     
 
