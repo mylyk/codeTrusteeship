@@ -213,9 +213,18 @@
      }
    ```
 
-   还可以增加 `extensions` 属性，用于省略引入模块时的后缀名，语法：<br>`extensions:['.js','.css','.vue']` 
-
-
+   还可以增加 `extensions` 属性，用于省略引入模块时的后缀名，语法：<br>`extensions:['.js','.css','.vue']` <br>
+   
+   ```js
+   resolve:{
+       //alias 别名
+       alias:{
+         'vue$':'vue/dist/vue.esm.js'
+       }
+     }
+   ```
+   
+   
 
 #### 1.7  vue中 template 和 el 
 
