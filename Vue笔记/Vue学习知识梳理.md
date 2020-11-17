@@ -305,16 +305,184 @@
 
 ####  9.8 plugin的使用
 
+> **plugin** : 对某个现有框架的扩展——对现有的webpack打包内容进行扩展，让webpack更好使用。
+
+1. plugin 和 loader 的区别：**loader**  主要用于转换某种类型的模块，它是一个转换器；**plugin** 是插件，他是针对webpack本身的扩充，是一个扩展器。
+
+2. plugin的基本使用：
+
+   * 通过npm安装某需要需要使用的插件（某些*webpack*内置的插件不需要安装）
+   * 在*webpack*中的 **webpack.config.js** 文件中配置 *plugin* 插件。
+
+3. 使用内置的**plugin** ，添加版权信息，在 **webpack.config.js** 配置<br>
+
+   ```js
+   module.exports={
+     plugins:[
+       new webpack.BannerPlugin("最终所有版本贵lyk所有")
+     ]
+   }
+   ```
+
+   
+
+4. 打包 html 的 plugin
+
+   * 安装：`npm install html-webpack-plugin --save-dev` 
+
+   * 在 **webpack.config.js** 中配置<br>
+
+     ```js
+     const HtmlWebpackPlugin = require("html-webpack-plugin");
+     module.exports={
+       plugins:[
+         new webpack.BannerPlugin("最终所有版本贵lyk所有"),
+         new HtmlWebpackPlugin();
+       ]
+     }
+     ```
+
+     配置过*htmlWebpackPlugin* 就可以删除 *output* 属性中的*publicPath*了。
+
+   * 为 *htmlWebpackPlugin* 指定模板，语法：<br>
+
+     ```js
+     new HtmlWebpackPlugin({
+     	template:'index.html'     //指定一个模板，让他从这模板中加载我们的div
+     });
+     ```
+
+5. JS 压缩的 *plugin* 
+
+   * 安装：<br>`npm install uglifyjs-webpack-plugin@1.1.1 --save-dev`  
+
+   * 配置<Br>
+
+     ```js
+     const UgligyjsWebpack = require('uglifyjs-webpack-plugin');
+     
+     plugins:[
+         new webpack.BannerPlugin("最终所有版本贵lyk所有"),
+         new HtmlWebpackPlugin({
+           template:'index.html'     //指定一个模板，让他从这模板中加载我们的div
+         }),
+         new UgligyjsWebpack()
+       ]
+     ```
+
+   
 
 
-####   搭建本地服务器
+####   9.9 搭建本地服务器
 
+1. webpack-dev-server 搭建本地服务器
 
+   * 安装：<br>`npm install webpack-dev-server@2.9.1 --save-dev` 
 
+   * 配置：
 
+     ```js
+     devServer:{
+         contentBase:'./dist',
+         inline:true
+       }
+     ```
+
+     contentBase：为哪一个文件夹提供本地服务，默认是根文件夹
+
+     port：端口号
+
+     inline：页面实时刷新
+
+     historyApiFallback：在SPA页面中，依赖HTML5的history模式。
+
+   * 在 **package.json** 中配置运行命令<br>
+
+     ```js
+     "scripts": {
+         "test": "echo \"Error: no test specified\" && exit 1",
+         "bulid": "webpack",
+         "dev":"webpack-dev-server"
+       }
+     ```
+
+     细节：还可以在 *dev* 里面增加 **- -open** 让它直接在浏览器中打开
+
+     ```js
+     "scripts": {
+         "test": "echo \"Error: no test specified\" && exit 1",
+         "bulid": "webpack",
+         "dev":"webpack-dev-server --open"
+       }
+     ```
+
+     
+
+   * 在命令提示服里面运行服务：`npm run dev` 
+
+2. webpack 配置文件分离，区分哪些配置是开发时依赖，哪些是运行时依赖
+
+   > --save-dev 表示开发依赖（辅助） 
+   > 开发时的依赖比如安装 js的压缩包gulp-uglify 因为我们在发布后用不到它，而只是在我们开发才用到它。
+   >
+   > --save   表示运行依赖（发布）
+   > 发布后还需要依赖的模块，譬如像jQuery库或者Angular框架类似的，我们在开发完后后肯定还要依赖它们，否则就运行不了。
+
+   * 安装：`npm install webpack-merge --save-dev` 
+
+   * 用法：
+
+     ```js
+     const webpackMerge = require('webpack-merge');    //引入webpack-merge 用来合并配置文件
+     const baseConfig = require('./base.config');
+     
+     module.exports = webpackMerge.merage(baseConfig,{
+       devServer:{
+         contentBase:'./dist',
+         inline:true,
+         port:9090
+       }
+     });
+     ```
+
+     ==注意：新的*webpack-merage*返回的是一个对象，也就是**webpackMerge**是一个对象需要调用里面 **merge** 方法来完成打包。== 
+
+     ​			通过 *webpack-marge* 设置完成后，可以删除掉 *webpack.config.js* 默认配置文件；然后再 **package.json** 文件中配置运行时指向的配置文件；语法如下
+
+     ```json
+     "scripts": {
+         "test": "echo \"Error: no test specified\" && exit 1",
+         "bulid": "webpack --config ./bulid/prod.config.js",
+         "dev": "webpack-dev-server --open --config ./bulid/dev.config.js"
+       }
+     ```
 
 
 
 ### 十 . Vue CLl(脚手架)
 
+#### 10.1  简介
 
+* 使用vue开发大型项目应用时，我们需要考虑代码目录结构、项目结构和部署、热加载、代码单元测试等事情。
+* 如果每个项目都要手动完成这些工作，那无疑效率比较低，所以通常我们会使用一些脚手架工具来帮助完成这些事情。
+* CLI是什么
+  * command-Line Interface , 翻译为命令界面，但是俗称脚手架。
+  * Vue CLI 是一个官方发布 Vue.JS 项目脚手架。
+  * 使用 Vue-Cli 可以快速搭建 Vue 开发环境以及对应的 webpack 配置。
+* 什么是NPM 
+  * 全称：Node Package Manage
+  * 是一个Node包管理和分发工具
+
+
+
+#### 10.2 基本使用
+
+1. 安装Vue 脚手架
+   * `npm install -g @vue/cli` 或者 `npm install -g vue-cli` 
+   * 查看版本：`vue --version`<br>
+   * 上面安装的是Vue CLI3的版本，如果需要按照Vue CLI2的方式初始化项目是不可以的；因此你需要安装 Cli2的模板。
+2. 拉取 Cli 2.x 模板
+   * 命令：`npm install @vue/cli-init -g` 
+   * Cli 2.x 初始化项目：`vue init webpack [my-project项目名称]` 
+3. Cli 3.x 
+   * 初始化项目：`vue create [myproject项目名称]`
