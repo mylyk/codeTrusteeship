@@ -12,6 +12,8 @@
    * `git add .`   添加当前目录下所有文件
 4. 提交日志
    * `git commit -m "日志描述"` 
+5. 提交文件、代码
+   * `git pull <远程主机名> <远程分支名>` 
 
 
 
@@ -21,11 +23,12 @@
    * `ssh-Keygen -t rsa -C "12@qq.com(你要设置的邮箱名称)"` <br>**注意：** 命令行区分大小写，上面命令中的 **"C"** 为大写。
    * 设置完成后你可以在提示的相关目录下找 **.shh** 文件夹，里面有 **id_rsa（私钥）** 和 **id_rsa.pub（公钥）** 两个文件，公钥可以放心的告诉别人。
 2. 登陆 **GitHub** ==>  **settings**    ==>    **SSH and GPG keys**  添加SSH keys
-3. 将本地内容推送到 **github** 仓库下命令
+3.  将远程仓库代码、文件克隆到本地:`git clone [远程仓库地址]` 
+4. 将本地内容推送到 **github** 仓库下命令
    * `git remote add origin (你仓库的 ssh 或者 https 地址)`
    * **注意：** 第一次推送时 **github** 上的仓库并非是空的，他们默认创建一个 **README** 的文档，因此需要将两者进行合并。<br> 语法：`git pull --rebase origin master` 
-4. 更本地代码
-   * `git pull`  更新本地代码
+5. 更本地代码
+   * `git push origin master`  提交本地代码到远程仓库
 
 
 
@@ -43,6 +46,11 @@
 * `git pull`  更新本地代码
 * `git rm (文件名)`  删除文件
 * `git rm -r (文件夹名)`  删除本地文件夹
+* `git status`   查看当前仓库状态
+* `git branch`  查看本地分支
+* `git branch -r`   查看远程分支
+* `git branch -a`   查看所有分支
+* `git checkout [分支名称]`  切换分支
 
 
 
@@ -63,6 +71,12 @@
 
 * `git fetch --all`  只是下载代码到本地，不进行合并操作
 * `git reset --hard origin/master`   把HEAD指向最新下载的版本
+
+#### 4.2  多词提交报错导致 git (master|REBASE 1/2) 
+
+* 回退提交，`git rebase --abort` ，解决
+
+
 
 
 
