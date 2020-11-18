@@ -486,3 +486,34 @@
    * Cli 2.x 初始化项目：`vue init webpack [my-project项目名称]` 
 3. Cli 3.x 
    * 初始化项目：`vue create [myproject项目名称]`
+
+
+
+#### 10.3 CLI2 初始化项目过程
+
+1. 安装 **vue2.x** 的模板：`npm install @vue/cli-init -g` 
+2. 命令：`vue init webpack [项目的名称]` ；注意项目的名称不能使用中文
+   * project name :  [项目名称，不能包含大写]
+   * project description：[作者信息，默认会从本地git中读取]
+   * vue bulid：[选择vue的模式是runtime compiler或者runtime-only]
+   * install vue-router：是否安装vue-router  路由功能
+   * use EsLint to lint your code?：是否使用代码格式限制
+   * set up unit tests：是否单元测试
+   * setup e2e tests with nightwatch？：是否进行 E to E 测试
+   * 最后一步选择是用npm开发；还是yarn开发
+3. VueCli2 目录结构
+   * **Build**：项目构建（webpack）相关代码;
+   * **config**：配置目录，包括端口号等。
+   * **node_modules**：npm加载的项目依赖模块
+   * **src**：这个目录当中的内容包含了我们基本上要做的事情，这里包含了几个文件：
+     * **assets**：存放图片
+     * **components**：存放组件文件
+     * **App.vue**：项目入口文件，组件也可以直接写在这里不适用components
+     * **main.js**：核心文件
+   * **static**：静态资源目录
+   * **test**：初始测试目录
+   * **.xxxx**：配置文件，包括git配置和语法配置等
+   *  **index.html**：首页
+   * **package.json**：项目配置文件
+   * **README.md**：说明文档
+
