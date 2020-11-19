@@ -492,6 +492,7 @@
 #### 10.3 CLI2 初始化项目过程
 
 1. 安装 **vue2.x** 的模板：`npm install @vue/cli-init -g` 
+
 2. 命令：`vue init webpack [项目的名称]` ；注意项目的名称不能使用中文
    * project name :  [项目名称，不能包含大写]
    * project description：[作者信息，默认会从本地git中读取]
@@ -501,6 +502,7 @@
    * set up unit tests：是否单元测试
    * setup e2e tests with nightwatch？：是否进行 E to E 测试
    * 最后一步选择是用npm开发；还是yarn开发
+   
 3. VueCli2 目录结构
    * **Build**：项目构建（webpack）相关代码;
    * **config**：配置目录，包括端口号等。
@@ -516,4 +518,42 @@
    *  **index.html**：首页
    * **package.json**：项目配置文件
    * **README.md**：说明文档
+   
+4. **runtime-compile ** 和 **runtime-only** 的区别
 
+   * vue compile 程序运行过程：<br>template  —解析—》ast（抽象的语法树abstract syntax tree）—编译—》render渲染（functions）——》vitual dom（虚拟DOM）——》UI（界面上的真实dom）
+
+   * vue only程序运行过程：<br>template  —解析—》render渲染（functions）——》vitual dom（虚拟DOM）——》UI（界面上的真实dom）
+
+   * ```js
+     import Vue from 'vue'
+     import App from './App'
+     
+     Vue.config.productionTip = false
+     new Vue({
+       el: '#app',
+       // components: { App },
+       // template: '<App/>'
+       render(createElement) {
+         //普通用法：creatElement("标签"，{标签的属性}，["标签内容"])
+         //return createElement('h2',{class:'box'},['hello Vue',createElement('button',['按钮'])]);
+         
+         //传入一个组件对象
+         return createElement(App);
+       },
+     })
+     ```
+
+     
+
+   
+
+### 十一. Vue-Router
+
+
+
+### 十二 . VueX
+
+
+
+### 十三 . 网络请求的封装（axios）
