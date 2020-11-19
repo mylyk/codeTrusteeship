@@ -43,7 +43,9 @@
 * `git push origin master`  git 会把master分支推送到远程git仓库上
 * `git push origin_new master`  重新推送
 * `git clone [远程仓库地址]`  将远程仓库代码克隆到本地
+* `git clone <版本的网址> <本地目录名>`  本地目录与远程目录不同名设置
 * `git pull`  更新本地代码
+* `git pull <远程主机名> <远程分支名>:<本地分支名>`  
 * `git rm (文件名)`  删除文件
 * `git rm -r (文件夹名)`  删除本地文件夹
 * `git status`   查看当前仓库状态
@@ -76,7 +78,12 @@
 
 * 回退提交，`git rebase --abort` ，解决
 
+#### 4.3 git clone 和 git pull的区别
 
+* `git clone` 是克隆：从远程服务器克隆一个一模一样的版本库到本地,复制的是整个版本库，叫做clone；将一个库复制到你的本地，是一个本地从无到有的过程。
+  * 如果要是制定不同的目录名，可以将目录名作为git clone 命令的第二个参数。`eg：$ git clone [版本库网址] [本地目录名]`
+* `git pull`是拉取：从远程服务器获取到一个branch分支的更新到本地，并更新本地库，叫做pull；指同步一个你在本地有版本的库内容更新的部分到你的本地库，作用是，取回远程主机某个分支的更新，再与本地的指定分支合并；
+  * 完整格式：`git pull [远程主机（origin）] [远程分支(next)]：[本地分支(master)]` 
 
 
 
