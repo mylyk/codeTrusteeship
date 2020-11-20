@@ -544,9 +544,24 @@
      })
      ```
 
-     
+#### 10.4 Vue CLI3
 
-   
+1. Vue Cli2 和 Vue Cli3 的区别
+   1. vue-cli3是基于webpack4打造的，vue-cli3是基于webpack3打造的
+   2. vue-cli3的设计原则是 "0配置" ，移除的配置文件根目录下，build 和 config 等目录。
+   3. vue-cli3提供了 vue ui 命令，提供了可视化配置，更加人性化。
+   4. 移除了 static 文件夹，新增了public 文件夹，并且 index.html 移动到 public 中
+2. 创建项目命令：`vue create [项目名称]` 
+   * please pick a preset： 选择配置方式
+   * check the features needed for project：选择自己需要的配置（空格选中或取消，回车确定）
+   * where do you prefer placing config for babel,postcss,eslint,etc：对应的配置单独生成文件还是放在*package.json*文件中，一遍选择生成单独的文件
+   * save this as a preset for future projects ：要不要将刚才自己选择配置保存下来。
+   * save preset as：设置保存的名称
+3. Vue UI（vue配置的图形界面）
+   * 启动的命令：vue UI
+
+
+
 
 ### 十一. Vue-Router
 
