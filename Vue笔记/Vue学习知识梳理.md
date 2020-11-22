@@ -562,8 +562,115 @@
 
 
 
-
 ### 十一. Vue-Router
+
+#### 11.1 认识路由
+
+1. 什么是路由：从一个源数据，将数据分发到指定终端，实现端到端的传输过程。
+
+2. 前端路由和后端路由
+   * **后端路由：**一个网页有自己对应的地址，也就是url；url会向服务发送请求，并交个控制器（controller）进行处理，controller 进行各种处理，最后生成 *HTML* 和数据，返回给前端，浏览器（Browser）解析并展示出来。
+   * **前端路由：** 涉及到前后端分离，也就是后端只负责提供数据，不负责内容的展示；前端路由主要负责处理我们url和页面资源的映射关系。
+   
+3. URL的hash
+
+   * URL的hash（哈希）也就是锚点，本质上是改变**windows.location**的**href**属性
+
+   * 我们可以通过直接赋值 **location.hash** 来改变 href，但是页面不会刷新。
+
+   * ```js
+     location.hash='lyk'  //lyk
+     //结果为：http://localhost:8080/#/lyk
+     
+     ```
+
+     
+
+4. html5中的 **history** 模式
+
+   * pushstate语法：`history.pushState({},'',url)` <br>
+
+     ```js
+     history.pushState({},"","home")  
+     //浏览器地址：http://localhost:8080/home
+     ```
+
+     该方法类似栈结构（先进后出）可以返回上次路由；也是使用`history.back（）` 方法返回
+
+   * replaceState 语法：`history.replaceState({},"",url )` <br>
+
+     ```js
+     history.replaceState({},"",'homes')
+     //浏览器地址：http://localhost:8080/homes
+     ```
+
+     注意：该方法url是替换，无法点击返回到上次路由
+
+   * go语法：`history,go(-1)`  等同意 `history.back()`    
+
+   * > 补充说明：
+     >
+     > 1. history.back() 等价于history.go(-1);
+     > 2. history.forward()等价于history.go(1)
+     > 3. 这仨个方法等同于浏览器界面的前进后退
+
+#### 11.2 vue-router 基本使用
+
+> 目前前端的三大框架都有自己的路由
+>
+> 1. Angular 的 ngRouter
+> 2. React 的 ReactRouter
+> 3. Vue 的 Vue-router
+
+1. 认识Vue-router
+
+   * Vue-router 是Vue.js 官方的路由插件，他和Vue是深度集成，适合构建单页面应用。<br>官网地址：https://router.vuejs.org/zh/
+   * 路由用于设定访问路径，将路径和组件映射起来。
+   * 在Vue-router的单页面应用中，页面的路径改变就是组件的切换。
+
+2. 安装和使用Vue-router
+
+   * 安装命令：`npm install vue-router --save` 
+   * 使用步骤：
+     * 导入路由对象，并且调用Vue.use(VueRouter)
+     * 创建路由实例，并传入路由映射配置
+     * 在Vue实例中挂载创建的路由实例
+   * 通过 Vue.use(插件)，安装插件：`Vue.use(VueRouter)` 
+
+3. 配置使用
+
+   * 找到router文件夹下面的index.js
+
+   * 如果手动配置，代码如下：<br>
+
+     ```js
+     import VueRouter from 'vue-router'
+     import Vue from 'vue'
+     
+     //1.通过Vue.use（插件），安装插件
+     Vue.use(VueRouter)
+     //2.创建VueRouter对象
+     const routes=[
+       
+     ]
+     const router =new VueRouter({
+       //配置路由和组件之间的应用关系
+       routes
+     });
+     
+     //3.将router对象传入到Vue实例中
+     export default router;
+     ```
+
+   * 使用路由<br>
+
+#### 11.3 vue-router 嵌套路由
+
+#### 11.4 vue-router 参数传递
+
+#### 11.5 vue-router 导航守卫
+
+#### 11.6 keep-alive
 
 
 
