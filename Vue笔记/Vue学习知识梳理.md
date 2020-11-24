@@ -651,7 +651,19 @@
      Vue.use(VueRouter)
      //2.创建VueRouter对象
      const routes=[
-       
+       {
+         path:'/',
+         //redirect 重定向 
+         redirect:'/home'
+       },{
+         path:'/home',
+         name:'Home',
+         component: Home
+       },{
+         path:'/about',
+      name:'About',
+         component:About
+       }
      ]
      const router =new VueRouter({
        //配置路由和组件之间的应用关系
@@ -661,8 +673,63 @@
      //3.将router对象传入到Vue实例中
      export default router;
      ```
-
+   
    * 使用路由<br>
+   
+     ```
+     <router-link to="/home">首页</router-link>
+     <router-link to="/about">首页</router-link>
+     <router-view/>
+     ```
+   
+     `<router-view/>` 是内容展示区域
+   
+4. 路由的默认路径<br>
+
+   ```JS
+   {
+     path:'/',
+     //redirect 重定向 
+     redirect:'/home'
+   }
+   ```
+
+5. 路由修改为 **history** 模式<br>
+
+   ```js
+   export default new Router({
+     routes,
+     mode:'history'
+   })
+   ```
+
+   在路由的js中增加 *mode* 属性
+
+6. **router-link** 的其他属性补充
+
+   * tag ：指定`router-link` 之后渲染成什么组件；<br>
+
+     ```html
+     <router-link to='/home' tag='li'></router-link>
+     ```
+
+     上面例子会将 `router-link` 渲染成 li 标签
+
+   * replace ： replace 不会留下 history 记录，所以指定了replace 后网页将无法后退以及返回
+
+   * active-class：当`router-link` 对应的路由匹配成功时，会自动给当前元素设置一个router-link-active的class，设置active-class可以修改默认名称；
+
+     * 在进行高亮显示的导航菜单会使用到该类；
+     * 但通常不会修改该类的属性，会直接使用默认的 router-link-active 即可。
+     * 统一修改可以在路由里面增加 **linkActiveClass** 属性 
+
+7. 通过代码实现路由跳转
+
+   * 安装了 **router** 后，会往每一个组件里面插入 **$router** 对象 ，同过 **$router** 对象中的方法来修改路由
+
+8. 动态路由使用
+
+   * 
 
 #### 11.3 vue-router 嵌套路由
 
