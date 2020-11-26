@@ -742,9 +742,34 @@
 
 #### 11.3 路由的懒加载 
 
+1. 懒加载，既在使用时才调用相关资源，语法如下：<Br>
 
+   ```JS
+   const Home = () => import('../components/home');
+   ```
+
+   
 
 #### 11.3 vue-router 嵌套路由
+
+1. 增加属性 `children` 配置新的路由<br>
+
+   ```js
+   const routes = [
+     {
+       path:'/',
+       component:Home,
+       children:[
+         {
+           path:'news',
+           component:News
+         }
+       ]
+     }
+   ]
+   ```
+
+   
 
 #### 11.4 vue-router 参数传递
 

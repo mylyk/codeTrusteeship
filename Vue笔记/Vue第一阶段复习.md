@@ -372,4 +372,92 @@
 
 #### 7.1  修饰符
 
-1. `.lazy` 
+1. `.lazy` ：<br>v-model在每次 input 时间触发后将输入框的值与数据同步，使用  `.lazy` 修饰符，从转为 `change` 事件。
+
+   ```html
+   <input v-model.lazy="msg">
+   ```
+
+   
+
+2. `.number` :<br>将用户输入的值转为数值类型，可以个 `v-model` 添加 `number` 修饰符
+
+   ```html
+   <input v-model.number="age" type="number">
+   ```
+
+   
+
+3. `.trim` <br>自动过滤用户输入的首尾空白字符，可以给 `v-model` 添加 `trim` 修饰符。
+
+   ```html
+   <input v-model.trim="msg">
+   ```
+
+   
+
+### 八  组件的基础
+
+#### 8.1 基本实例
+
+1. 定义组件<br>
+
+   ```js
+   Vue.component("button-component",{
+     data(){
+       return {
+         message:'hello word'
+       }
+     }
+   });
+   ```
+
+   组件的 `data` 必须是一个函数，返回一个对象，这样每个实例返回的都是唯一的对象。
+
+2. 组件的定义分为 **全局注册** 和 **局部注册** 
+
+   * **全局注册：**使用 `Vue.component` 来注册全局组件，也就是他们在注册之后可以用在任何新创建的Vue根实例（new Vue）模板中<br>
+
+     ```js
+     Vue.component({
+       //...选项
+     });
+     ```
+
+     
+
+   * **局部注册：** 在Vue实例中使用<br>
+
+     ```JS
+     const componentA={
+     			template:`<div>
+     				<h2>这是局部组件</h2>
+     			</div>`
+     		}
+     
+     new Vue({
+       el:'#app',
+       components:{
+         "component-a":componentA
+       }
+     })
+     ```
+
+     **注意：** HTML 中的 attribute 名是大小写不敏感的，所以浏览器会把所有大写字符解释为小写字符。这意味着当你使用 DOM 中的模板时，camelCase (驼峰命名法) 的 prop 名需要使用其等价的 kebab-case (短横线分隔命名) 命名。
+
+3. 通过 **Prop** 向子组件传递数据
+
+   * 一个组件默认可以拥有任意数量的 prop，任何值都可以传递给任何 prop。在组件实例中访问这个值，就像访问 `data` 中的值一样。<br>
+
+     ```html
+     <blog-post title="My journey with Vue"></blog-post>
+     <blog-post title="Blogging with Vue"></blog-post>
+     
+     Vue.component('blog-post', {
+       props: ['title'],
+       template: '<h3>{{ title }}</h3>'
+     })
+     ```
+
+     
+
