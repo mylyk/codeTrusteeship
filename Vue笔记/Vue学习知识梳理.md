@@ -750,7 +750,7 @@
 
    
 
-#### 11.3 vue-router 嵌套路由
+#### 11.4 vue-router 嵌套路由
 
 1. 增加属性 `children` 配置新的路由<br>
 
@@ -771,11 +771,23 @@
 
    
 
-#### 11.4 vue-router 参数传递
+#### 11.5 vue-router 参数传递
 
-#### 11.5 vue-router 导航守卫
+* 传递参数主要有两种类型：**params** 和 **query**
+* **params** 类型：
+  * 配置路由格式：`/router/:id` 
+  * 传递方式：在path后面跟上对应的值
+* **query** 类型：
+  * 配置路由格式：`/router` 
+  * 传递方式：对象中使用 query 的 key 作为传递方式
 
-#### 11.6 keep-alive
+#### 11.6  *$router* 和 *$route* 的区别
+
+ 
+
+#### 11.6 vue-router 导航守卫
+
+#### 11.7 keep-alive
 
 
 
