@@ -783,9 +783,50 @@
 
 #### 11.6  *$router* 和 *$route* 的区别
 
- 
+* 所有的组件都集成Vue的原型
 
 #### 11.6 vue-router 导航守卫
+
+* 生命周期函数<br>
+
+  ```js
+  //当组件被创建出来时触发
+   created() {
+     
+   },
+   //当模板挂载到DOM节点上时触发。
+   mounted() {
+     
+   },
+   //当界面上数据更新时触发
+   updated() {
+     
+   },
+  ```
+
+* Title 显示对应的标题
+
+  * ```js
+    router.beforeEach((to,from,next)=>{
+      //to:即将进入的目标路由对象
+      //from：单签导航即将要离开的路由对象
+      //next：调用该方法后，才能进入下一钩子
+      //从from跳转到to
+      document.title = to.matched[0].meta.title;
+    	next();  //必须要调用next方法
+    });
+    
+    const routes = [{
+        path:'/about',
+        name:'About',
+        meta:{
+          title:'关于'
+        },
+        component:About
+      }]
+    ```
+
+    使用 router.beforeEach 来实现导航守卫；在路由配置里面也需要增加eta 来添加元数据
 
 #### 11.7 keep-alive
 
