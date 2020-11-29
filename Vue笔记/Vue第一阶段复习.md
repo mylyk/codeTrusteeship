@@ -27,6 +27,10 @@
 
 ![Vue 实例生命周期](https://cn.vuejs.org/images/lifecycle.png)
 
+![Vue 实例生命周期](https://img2018.cnblogs.com/blog/1449477/201812/1449477-20181206154719642-1581878879.png)
+
+![声明周期函数](https://img2018.cnblogs.com/blog/1431882/201812/1431882-20181218204946251-1584122943.jpg)
+
 
 
 ### 二	模板语法
