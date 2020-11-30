@@ -644,11 +644,13 @@
    * 如果手动配置，代码如下：<br>
 
      ```js
+     //0.引入相关依赖
      import VueRouter from 'vue-router'
      import Vue from 'vue'
      
      //1.通过Vue.use（插件），安装插件
      Vue.use(VueRouter)
+     
      //2.创建VueRouter对象
      const routes=[
        {
