@@ -785,11 +785,11 @@
 
 #### 11.6  *$router* 和 *$route* 的区别
 
-==$router对象是全局路由的实例，是router构造方法的实例。==
+==$router对象是全局路由的实例，是route构造方法的实例，router是VueRouter的一个对象，通过Vue.use(VueRouter)和VueRouter构造函数得到一个router的实例对象，这个对象中是一个全局的对象，他包含了所有的路由包含了许多关键的对象和属性。==
 
 * 所有的组件都集成Vue的原型<Br>参考地址：https://www.jianshu.com/p/758bde4d9c2e
 
-* `$route`对象：
+* `$route`对象：.route是一个跳转的路由对象，每一个路由都会有一个route对象，是一个局部的对象，可以获取对应的name,path,params,query等
 
   * `$route`对象表示当前路由信息，包含了当前URL解析的信息。包含当前路径，参数，query对象。
   *  **$route.path** 字符串，对应当前路由的路径，总是解析为绝对路径
@@ -820,7 +820,8 @@
 
     * **replace**  push方法会向 history 栈添加一个新的记录，而replace方法是替换当前的页面，不会向 history 栈添加一个新的记录
 
-    * 
+
+
 
 #### 11.6 vue-router 导航守卫
 
