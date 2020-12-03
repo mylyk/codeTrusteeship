@@ -785,7 +785,42 @@
 
 #### 11.6  *$router* 和 *$route* 的区别
 
-* 所有的组件都集成Vue的原型
+==$router对象是全局路由的实例，是router构造方法的实例。==
+
+* 所有的组件都集成Vue的原型<Br>参考地址：https://www.jianshu.com/p/758bde4d9c2e
+
+* `$route`对象：
+
+  * `$route`对象表示当前路由信息，包含了当前URL解析的信息。包含当前路径，参数，query对象。
+  *  **$route.path** 字符串，对应当前路由的路径，总是解析为绝对路径
+  * **$route.params** 一个 key/value 对象，包含了 动态片段 和 全匹配片段，   如果没有路由参数，就是一个空对象
+  * **$route.query**   一个 key/value 对象，表示 URL 查询参数。
+  * **$route.hash**   当前路由的hash值 (不带#) ，如果没有 hash 值，则为空字符串。
+  * **$route.fullPath**   完成解析后的 URL，包含查询参数和hash的完整路径
+  * **$route.matched**   数组，包含当前匹配的路径中所包含的所有片段所对应的配置参数对象。
+  * **$route.name**  当前路径名字
+  * **$route.meta** 路由元信息
+
+* `$router` 对象   **$router对象是全局路由的实例，是router构造方法的实例。**
+
+  * **路由实例方法：**
+
+    * #### **push** <br>
+
+      ```
+      1.字符串this.$router.push('home')
+      2. 对象this.$router.push({path:'home'})
+      
+      3. 命名的路由this.$router.push({name:'user',params:{userId:123}})
+      
+      4.带查询参数，变成 /register?plan=123this.$router.push({path:'register',query:{plan:'123'}})push方法其实和<router-link :to="...">是等同的。
+      ```
+
+    * **go** 页面路由跳转；前进或者后退
+
+    * **replace**  push方法会向 history 栈添加一个新的记录，而replace方法是替换当前的页面，不会向 history 栈添加一个新的记录
+
+    * 
 
 #### 11.6 vue-router 导航守卫
 
