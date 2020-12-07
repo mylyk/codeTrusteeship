@@ -521,9 +521,9 @@
    
 4. **runtime-compile ** 和 **runtime-only** 的区别
 
-   * vue compile 程序运行过程：<br>template  —解析—》ast（抽象的语法树abstract syntax tree）—编译—》render渲染（functions）——》vitual dom（虚拟DOM）——》UI（界面上的真实dom）
+   * vue compile 程序运行过程：<br>template  —解析—> ast（抽象的语法树abstract syntax tree）—编译—> render渲染（functions）——>vitual dom（虚拟DOM）——>UI（界面上的真实dom）
 
-   * vue only程序运行过程：<br>template  —解析—》render渲染（functions）——》vitual dom（虚拟DOM）——》UI（界面上的真实dom）
+   * vue only程序运行过程：<br>template  —解析—> render渲染（functions）——> vitual dom（虚拟DOM）——> UI（界面上的真实dom）
 
    * ```js
      import Vue from 'vue'
@@ -877,6 +877,38 @@
 2. `keep-alive` 是Vue内置的组件，可以使包含的组件保留状态，或避免重新渲染；他有两个重要的属性
    * include：字符串或正则表达式，只有匹配的组件才会被创建
    * exclude：字符串或正则表达式，任何匹配的组件都不会被缓存
+
+#### 11.8  路径起别名
+
+* 为了方便代码的书写和阅读，我们可以给文件路径起别名
+
+* 在 *webpack.base.conf.js* 文件中修改配置如下：<br>
+
+  ```js
+  resolve: {
+      extensions: ['.js', '.vue', '.json'],
+      alias: {
+        '@': resolve('src'),
+        'assets': resolve('src/assets'),
+        'components': resolve('src/components'),
+        'views': resolve('src/views')
+      }
+    }
+  ```
+
+  ==注意：==在html路径中使用别面需要使用 "~" 符号，示例代码如下：<br>
+
+  ```html
+  <tab-bar-item path='/home'>
+    <img slot='item-img' src="~assets/img/tabbar/home.svg" />
+    <img slot='item-img-active' src="~assets/img/tabbar/home_active.svg" />
+    <div slot='item-text'>首页</div>
+  </tab-bar-item>
+  ```
+
+#### 11.9 拓展 . Promise
+
+
 
 ### 十二 . VueX
 
