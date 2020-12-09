@@ -909,6 +909,10 @@
 #### 11.9 拓展 . Promise
 
 * Promise 是异步编程的一种解决方案。
+* 异步操作一般有三种状态：
+  * pending：等待状态
+  * fulfill：满足状态，当我们主动调用 resolve 时，就处于满足状态，并且回调.then()
+  * reject：拒绝状态
 
 ### 十二 . VueX
 
