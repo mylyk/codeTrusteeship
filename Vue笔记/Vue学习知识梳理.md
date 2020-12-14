@@ -942,14 +942,51 @@
 
 2. 引用插件：`Vue.use（插件名）` 
 
-3. Vuex基础使用<br>
+3. vuex组件在APP.js种引用后，vue种将会有一个全局对象`$store` 
+
+4. Vuex基础使用<br>
 
    ```js
    import Vue from 'vue'
+   import Vuex from 'vuex'
+   
+   //注册组件
+   Vue.use(Vuex);
+   
+   //创建组件对象
+   const store = new Vuex.Store({
+     state:{
+       //定义相关公共的属性和对象
+       count:100
+     },
+     mutations:{
+       //定义相关方法的;每个方法默认都有一个state参数
+       increment(state){
+         return state.count++;
+       },
+       decrement(state){
+         return state.count--;
+       }
+     }
+   });
+   
+   //对外抛出定义对象
+   export default store;
    ```
 
    
 
-
+5. Vuex里面的核心概念
+   * State：单一状态树
+   * Getters：可以认为是 **Vuex** 的计算属性。就像计算属性一样，getter的返回值会根据它的依赖被缓存起来，只有当值发生改变才会被重新计算；启动被定义的方法也会默认传入一个 **state** 形参。
+   * Mutation：可以理解为事件和方法，且每一个方法也有一个state形参
+     * 每个Mutation都有一个字符串**事件类型**（type）
+     * **回调函数**
+     * mutation需要遵守Vue的响应规则：
+       1. 最好提前定义在 store 中并初始化好所有的属性。
+       2. 当需要在对象上添加新属性时，你需要`Vue.set(Obj,'[key]','[value]')` 
+       3. 删除对象是也要使用`Vue.delete(target,key)` 
+   * Action
+   * Module
 
 ### 十三 . 网络请求的封装（axios）
