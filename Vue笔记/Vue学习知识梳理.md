@@ -990,7 +990,11 @@
        2. 当需要在对象上添加新属性时，你需要`Vue.set(Obj,'[key]','[value]')` 
        3. 删除对象是也要使用`Vue.delete(target,key)` 
      
-   * Action：它类似于 **Mutation** ，不同在于 **Action** 中处理的都是异步操作
+   * Action：它类似于 **Mutation** ，不同在于 **Action** 中处理的都是异步操作，语法格式：<br>
+   
+     ```js
+     this.$store.dispatch();
+     ```
    
    * Module：Vuex 允许我们将 store 分割成**模块（module）** ，每个模块拥有自己的 state、mutation、action、getter、甚至是嵌套子模块——从上至下进行同样方式的分割。
    
