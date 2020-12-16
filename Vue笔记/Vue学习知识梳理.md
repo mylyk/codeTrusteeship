@@ -1007,6 +1007,50 @@
            }
        ```
    
-       
+6. 项目结构 （Vuex 并不限制你的代码结构。但是，它规定了一些需要遵守的规则：）
+
+   1. 应用层级的状态应该集中到单个 store 对象中。
+
+   2. 提交 **mutation** 是更改状态的唯一方法，并且这个过程是同步的。
+
+   3. 异步逻辑都应该封装到 **action** 里面
+
+   4. 示意图：<br>
+
+      ```js
+      ├── index.html
+      ├── main.js
+      ├── api
+      │   └── ... # 抽取出API请求
+      ├── components
+      │   ├── App.vue
+      │   └── ...
+      └── store
+          ├── index.js          # 我们组装模块并导出 store 的地方
+          ├── actions.js        # 根级别的 action
+          ├── mutations.js      # 根级别的 mutation
+          └── modules
+              ├── cart.js       # 购物车模块
+              └── products.js   # 产品模块
+      ```
+
+      
+
+
 
 ### 十三 . 网络请求的封装（axios）
+
+#### 13.1 官方网站（http://www.axios-js.com/zh-cn/）
+
+* 简介：Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。
+
+#### 13 .2 基本使用
+
+##### 1. 安装
+
+* `npm install --save axios vue-axios` 
+
+
+
+
+
