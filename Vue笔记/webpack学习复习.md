@@ -64,7 +64,7 @@
 
 2. 安装 **css-loader** ，让 *webpack* 解析css；<br>**注意：**==使用多个loader是文件读取顺序是从右往左，因此需要先写css-loader再写style-loader==
 
-   * 命令：`webpack install css-loader@2.0.2 --svae-dev` 
+   * 命令：`npm install css-loader@2.0.2 --save-dev` 
 
    * 在 **webpack.config.js** 文件中配置，如下：<br>
 

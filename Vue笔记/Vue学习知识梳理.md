@@ -1046,11 +1046,46 @@
 
 #### 13 .2 基本使用
 
-##### 1. 安装
+1. 安装：`npm install axios --save` 
 
-* `npm install --save axios vue-axios` 
+2. axios的基本框架<br>
 
+   ```js
+   axios({
+     url:'http://123.207.32.32:8000/home/data',
+     //专门增对get请求的参数拼接
+     params:{
+       type:'pop',
+       page:2
+     }
+   }).then((resolve)=>{
+     console.log(resolve);
+   });
+   ```
 
+   
+
+3. 发送并发请求：**axios.all()** 返回结果是一个数组，使用 **axios.spread()** 可将返回结果数组拆分开来<br>
+
+   ```js
+   axios.all([
+     axios({
+       url:'http://123.207.32.32:8000/home/multidata'
+     }),
+     axios({
+       url:'http://123.207.32.32:8000/home/data',
+       params:{
+         type:'sell',
+         page:2
+       }
+     })
+   ]).then(axios.spread((result1,result2)=>{
+     console.log(result1);
+     console.log(result2);
+   }))
+   ```
+
+   
 
 
 
