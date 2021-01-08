@@ -463,5 +463,71 @@
      })
      ```
 
-     
+
+
+
+### 九 插槽（slot）
+
+#### 9.1  插槽的基本概念
+
+1. 在自定义组件时，在组件注册是申明 `<slot></slot>` 标签，然后再**HTML** 代码中调用组件标签时，组件标签之间的内容会和`<slot>` 标签替换。
+2. 注意在2.6.0版本中，为具名插槽和作用域插槽，引入了一种全新的统一的语法`v-solt` ，它取代了 `slot` 和 `slot-scope` ，其中 `slot` 和 `slot-scope`已经废弃，但没有移除。
+
+#### 9.2 编译作用域
+
+1. 父模板中所有的内容都是在父级作用域中编译的；子模板中所有内容都是在子作用域中编译。
+
+#### 9.3 后备内容（默认内容）
+
+1. 为`slot` 设置默认值
+
+#### 9.4 具名插槽
+
+1. 具有自己名称`slot`插槽：`<slot name='title'></slot>`
+
+2. 向具名插槽提供内容时，有两种格式
+
+   1. 在HTML标签上声明`slot`属性：`<p slot='title'>我是修改后的title</p>`
+
+   2. 使用`<template></template>`使用`v-slot:bodys` <br>
+
+      ```html
+      <template v-slot:bodys>
+      	<h5>这是通过v-slot修改body内容</h5>
+      </template>
+      ```
+
+      ***注意：*** **`v-slot` 只能添加在 `<template>` 上** (只有[一种例外情况](https://cn.vuejs.org/v2/guide/components-slots.html#独占默认插槽的缩写语法))，这一点和已经废弃的 [`slot` attribute](https://cn.vuejs.org/v2/guide/components-slots.html#废弃了的语法) 不同。
+
+#### 9.5 作用域插槽
+
+1. 为了让子组件的数据，可以在父组件中访问
+
+2. 绑定在 `slot` 元素上的属性（attribute）称之为**插槽prop** 
+
+3. 在父级作用域中，我们可以使用带值的 `v-slot` 来定义我们提供的插槽 prop 的名字<br>
+
+   ```html
+   <current-user>
+     <template v-slot:default="slotProps">
+       {{ slotProps.user.firstName }}
+     </template>
+   </current-user>
+   ```
+
+   其中的slotProps可以使用户自己自定义名称。
+
+#### 9.6 动态插槽名
+
+* 动态指令参数，使用`[]`中括号，来动态定义插槽名
+
+#### 9.7 具名插槽的缩写
+
+* 具名插槽的缩写用 `#` 
+
+
+
+### 十 动态组件 和 异步组件
+
+#### 10.1  动态组件
 
