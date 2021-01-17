@@ -648,7 +648,7 @@
      import VueRouter from 'vue-router'
      import Vue from 'vue'
      
-     //1.通过Vue.use（插件），安装插件
+     //1.注册Vue.use（插件），安装插件
      Vue.use(VueRouter)
      
      //2.创建VueRouter对象
