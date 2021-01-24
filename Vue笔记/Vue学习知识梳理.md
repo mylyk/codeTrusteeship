@@ -914,6 +914,44 @@
   * fulfill：满足状态，当我们主动调用 resolve 时，就处于满足状态，并且回调.then()
   * reject：拒绝状态
 
+#### 11.10 Cli3中自定义配置
+
+> 在CLI3中所有的脚手架配置都放到 `node_modules` 文件夹中的@vue中，因此你自定义的配置需要在当前项目中新建文件`vue.config.js` 文件，在其中配置
+
+1. 端口号配置<br>
+
+   ```js
+   module.exports = {
+     devServer: {
+       // 项目运行时候的端口号
+       port: 2020
+     }
+   };
+   ```
+
+   
+
+2. 文件别名配置<br>
+
+   ```js
+   configureWebpack:{
+       resolve:{
+         alias:{
+           'css':'@/assets/css',
+           'img':'@/assets/img',
+           'common':'@/common',
+           'components':'@/components',
+           'view':'@/view',
+           'network':'@/network',
+         }
+       }
+     }
+   ```
+
+   
+
+
+
 ### 十二 . VueX
 
 #### 12.1 Vuex的简介
