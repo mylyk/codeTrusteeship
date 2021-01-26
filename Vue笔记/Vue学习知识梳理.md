@@ -1086,7 +1086,16 @@
 
 1. 安装：`npm install axios --save` 
 
-2. axios的基本框架<br>
+2. 基本使用<br>
+
+   ```js
+   //直接引用
+   import axios from 'axios'
+   ```
+
+   
+
+3. axios的基本框架<br>
 
    ```js
    axios({
@@ -1103,7 +1112,7 @@
 
    
 
-3. 发送并发请求：**axios.all()** 返回结果是一个数组，使用 **axios.spread()** 可将返回结果数组拆分开来<br>
+4. 发送并发请求：**axios.all()** 返回结果是一个数组，使用 **axios.spread()** 可将返回结果数组拆分开来<br>
 
    ```js
    axios.all([
