@@ -1135,6 +1135,28 @@
 * 发送并发请求：**axios.all()** 返回结果是一个数组，使用 **axios.spread()** 可将返回结果数组拆分开来<br>
 
   ```js
+  //基本语法
+  axios.defaults.baseURL='http://123.207.32.32:8000';
+  axios.all([
+    axios({
+      url:'/home/multidata'
+    }),
+    axios({
+      url:'/home/data',
+      params:{
+        type:'sell',
+        page:5
+      }
+    }),
+    axios({
+      url:'/category'
+    })
+  ]).then(res1=>{
+    console.log(res1);
+  })
+  
+  
+  //使用axios.spread()
   axios.all([
     axios({
       url:'http://123.207.32.32:8000/home/multidata'
@@ -1169,16 +1191,32 @@
 1. 创建实例<br>
 
    ```js
-   const instance = axios.create({
-     baseURL:'存放当前实例公共的请求地址',
-     timeout:5000
-   });
-   instance({
-     url:'请求服务器的后缀地址'
-   }).then(res=>{
-     console.log(res);
-   }).catch(err=>{
-     console.log(err);
+   //创建实例
+   const instance1=axios.create({
+     baseURL:'http://123.207.32.32:8000',
+     timeout:5000   //设置请求时间不超过多少毫秒
+   })
+   //使用实例
+   instance1({
+     url:'/home/data'
+   }).then((result)=>{
+     console.log('地址1成功结果如下：');
+     console.log(result)
+   }).catch((err)=>{
+     console.log('请求地址有误');
+   })
+   
+   const instance2=axios.create({
+     baseURL:'http://123.207.32.32:8000',
+     timeout:1000   //设置请求时间不超过多少毫秒
+   })
+   instance2({
+     url:'/home/multidata'
+   }).then((result)=>{
+     console.log('地址2成功结果如下：');
+     console.log(result)
+   }).catch((err)=>{
+     console.log('请求地址有误');
    })
    
    ```
@@ -1193,25 +1231,65 @@
 
       ```js
       import axios from 'axios'
-      export function request(){
+      export function request(config,success,error){
         //创建axios实例
         const instance = axios.create({
           baseURL:'公共请求路径地址'
           // 其他参数
         })
-        instance({
-          url:'请求服务器的后缀地址'
-        }).then(res=>{
+        instance(config).then(res=>{
           //结果不能再封装模块中处理要将结果反馈出去
           //方法1.传过来一个方法，通过回调函数的方法将结果返回去
-          //方法2.由于axios.create是基于promise 的http库，可以在外面调用时直接通过then和catch来获取结果
           console.log(res);
+          success(res)
         }).catch(err=>{
           //结果不能再封装模块中处理要将结果反馈出去
           console.log(err);
+          error(err)
         })
       }
-      ```
-
       
+      //方法2.由于axios.create是基于promise 的http库，可以在外面调用时直接通过then和catch来获取结果
+
+        //创建实例
+        const instance = axios.create({
+          baseURL:"http://123.207.32.32:8000"
+        })
+        //直接将instance 抛出，因为axios.create创建的就是一个promise
+        return instance(config);
+      ```
+      
+      
+
+#### 13.6 拦截器
+
+1. axios提供的拦截器，用于我们每次发送请求或者响应后，进行相应的处理。
+
+2. 请求的拦截器<br>
+
+   ```js
+   //创建一个实例
+   const instance = axios.create({
+     baseURL:"http://123.207.32.32:8000"
+   });
+   
+   // 添加请求拦截器
+   instance.interceptors.request.use(function (config) {
+     // 在发送请求之前做些什么
+     return config;
+   }, function (error) {
+     // 对请求错误做些什么
+     return Promise.reject(error);
+   });
+   // 添加响应拦截器
+   axios.interceptors.response.use(function (response) {
+       // 对响应数据做点什么
+       return response;
+     }, function (error) {
+       // 对响应错误做点什么
+       return Promise.reject(error);
+     });
+   ```
+
+   注意：不管是响应拦截还是请求拦截，都必须拦截结果**return**出去，否则响应/请求会一直停在拦截器哪里，不进行下一步。
 
