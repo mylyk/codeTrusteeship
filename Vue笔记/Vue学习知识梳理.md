@@ -1099,40 +1099,119 @@
 
    ```js
    axios({
-     url:'http://123.207.32.32:8000/home/data',
-     //专门增对get请求的参数拼接
-     params:{
-       type:'pop',
-       page:2
-     }
-   }).then((resolve)=>{
-     console.log(resolve);
-   });
+     url:'请求的地址',
+     method:'get/post'   //声明网络请求的方式是get还是post
+   }).then(res=>{
+     console.log(res);
+   })
    ```
-
    
-
-4. 发送并发请求：**axios.all()** 返回结果是一个数组，使用 **axios.spread()** 可将返回结果数组拆分开来<br>
+   
+   
+4. 携带参数的请求<br>
 
    ```js
-   axios.all([
-     axios({
-       url:'http://123.207.32.32:8000/home/multidata'
-     }),
-     axios({
-       url:'http://123.207.32.32:8000/home/data',
-       params:{
-         type:'sell',
-         page:2
-       }
-     })
-   ]).then(axios.spread((result1,result2)=>{
-     console.log(result1);
-     console.log(result2);
-   }))
+   axios({
+     url:'请求的地址',
+    	//params是专门针对get请求的参数拼接
+     params:{
+       //参数名：‘参数’
+     },
+     //data是专门针对post请求的参数传递
+     data:{
+       //参数名:'参数'
+     }
+   }).then(res=>{
+     console.log(res);
+   })
+   ```
+
+   其中**params**是针对**get**的参数传递；**data**是针对与post的参数传递。
+
+   
+
+#### 13.3 并发请求
+
+* 发送并发请求：**axios.all()** 返回结果是一个数组，使用 **axios.spread()** 可将返回结果数组拆分开来<br>
+
+  ```js
+  axios.all([
+    axios({
+      url:'http://123.207.32.32:8000/home/multidata'
+    }),
+    axios({
+      url:'http://123.207.32.32:8000/home/data',
+      params:{
+        type:'sell',
+        page:2
+      }
+    })
+  ]).then(axios.spread((result1,result2)=>{
+    console.log(result1);
+    console.log(result2);
+  }))
+  ```
+
+
+
+#### 13.4 全局配置
+
+* 给axios中设置全局/公共的配置（或者叫默认值）<br>
+
+  ```js
+  axios.defaults.baseURL='公共的请求路径'
+  ```
+
+
+
+#### 13.5 创建实例和模块封装
+
+1. 创建实例<br>
+
+   ```js
+   const instance = axios.create({
+     baseURL:'存放当前实例公共的请求地址',
+     timeout:5000
+   });
+   instance({
+     url:'请求服务器的后缀地址'
+   }).then(res=>{
+     console.log(res);
+   }).catch(err=>{
+     console.log(err);
+   })
+   
    ```
 
    
 
+2. 模块封装
 
+   1. 新建文件夹 **network** ，新建文件 **request.js（名称可以自己定义）** 
+
+   2. 封装 **axios** <br>
+
+      ```js
+      import axios from 'axios'
+      export function request(){
+        //创建axios实例
+        const instance = axios.create({
+          baseURL:'公共请求路径地址'
+          // 其他参数
+        })
+        instance({
+          url:'请求服务器的后缀地址'
+        }).then(res=>{
+          //结果不能再封装模块中处理要将结果反馈出去
+          //方法1.传过来一个方法，通过回调函数的方法将结果返回去
+          //方法2.由于axios.create是基于promise 的http库，可以在外面调用时直接通过then和catch来获取结果
+          console.log(res);
+        }).catch(err=>{
+          //结果不能再封装模块中处理要将结果反馈出去
+          console.log(err);
+        })
+      }
+      ```
+
+      
 
