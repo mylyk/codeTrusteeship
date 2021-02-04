@@ -741,6 +741,25 @@
      ```
    
    * 调用时使用 `$route.params.userID[如上定义的用户参数]` 
+   
+9. 子路由：增加属性 `children` <br>
+
+   ```js
+   {
+       path:'/home',
+       name:'Home',
+       component:Home,
+       children:[
+         {
+           path:'user',
+           name:'User',
+           component:User
+         }
+       ]
+     }
+   ```
+
+   
 
 #### 11.3 路由的懒加载 
 
