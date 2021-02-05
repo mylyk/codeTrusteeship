@@ -975,6 +975,8 @@
 
 #### 12.1 Vuex的简介
 
+> 官网地址：https://vuex.vuejs.org/zh/
+
 * 每一个 Vuex 应用的核心就是 store（仓库）。“store”基本上就是一个容器，它包含着你的应用中大部分的**状态 (state)**。
 
 * VueX 是一个转为Vue.js应用程序开发的**状态管理模式**。
@@ -1033,38 +1035,63 @@
 
    
 
-5. Vuex里面的核心概念
+5. vuex中调用定义的`store`<br>
+
+   ```js
+   $store.state.[state中定义的data]
+   ```
+
+   
+
+6. 常用的那些状态需要组件中共享等，如下这些信息我们可以存放在`store`中进行管理。
+
+   * 用户的登录信息
+   * 某一个状态是多页面共享的
+   * 商品的收藏，购物车中物品
+
+7. Vuex里面的核心概念
    * State：单一状态树
-   
+
    * Getters：可以认为是 **Vuex** 的计算属性。就像计算属性一样，getter的返回值会根据它的依赖被缓存起来，只有当值发生改变才会被重新计算；启动被定义的方法也会默认传入一个 **state** 形参。
-   
-   * Mutation：可以理解为事件和方法，且每一个方法也有一个state形参
-     * mutation 中进行并记录的都是同步操作，无法记录异步操作。
-     * 每个Mutation都有一个字符串**事件类型**（type）
+
+   * Mutations：可以理解为事件和方法，且每一个方法也有一个state形参
+     * Mutations中进行并记录的都是同步操作，无法记录异步操作。
+     
+     * 每个Mutations都有一个字符串**事件类型**（type）
+     
      * **回调函数**
-     * mutation需要遵守Vue的响应规则：
+     
+     * Mutations需要遵守Vue的响应规则：
        1. 最好提前定义在 store 中并初始化好所有的属性。
        2. 当需要在对象上添加新属性时，你需要`Vue.set(Obj,'[key]','[value]')` 
        3. 删除对象是也要使用`Vue.delete(target,key)` 
+       
+     * 调用方法：在主页面中定义方法，然后再方法中调用**store**中定义的方法<br>
      
-   * Action：它类似于 **Mutation** ，不同在于 **Action** 中处理的都是异步操作，语法格式：<br>
-   
+       ```js
+       this.$store.commit('[定义方法名]');
+       ```
+     
+       
+     
+   * Actions：它类似于 **Mutation** ，不同在于 **Action** 中处理的都是异步操作，语法格式：<br>
+
      ```js
      this.$store.dispatch();
      ```
-   
-   * Module：Vuex 允许我们将 store 分割成**模块（module）** ，每个模块拥有自己的 state、mutation、action、getter、甚至是嵌套子模块——从上至下进行同样方式的分割。
-   
+
+   * Modules：Vuex 允许我们将 store 分割成**模块（module）** ，每个模块拥有自己的 state、Mutations、actions、getters、甚至是嵌套子模块——从上至下进行同样方式的分割。
+
      * 对于模块内部的 action，局部状态通过 `context.state` 暴露出来，根节点状态则为 `context.rootState` 
-   
+
        ```js
        sumWithRootCount (state, getters, rootState) {
          		//根节点会作为第三个参数暴露出来
              return state.count + rootState.count
            }
        ```
-   
-6. 项目结构 （Vuex 并不限制你的代码结构。但是，它规定了一些需要遵守的规则：）
+
+8. 项目结构 （Vuex 并不限制你的代码结构。但是，它规定了一些需要遵守的规则：）
 
    1. 应用层级的状态应该集中到单个 store 对象中。
 
