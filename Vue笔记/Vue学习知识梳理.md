@@ -486,6 +486,9 @@
    * Cli 2.x 初始化项目：`vue init webpack [my-project项目名称]` 
 3. Cli 3.x 
    * 初始化项目：`vue create [myproject项目名称]`
+4. 卸载当前的版本安装固定的版本
+   * `npm uninstall -g @vue/cli` 
+   * 再次安装指定的Cli版本：`npm install -g @vue/cli@3.0.4` 
 
 
 
@@ -547,7 +550,7 @@
 #### 10.4 Vue CLI3
 
 1. Vue Cli2 和 Vue Cli3 的区别
-   1. vue-cli3是基于webpack4打造的，vue-cli3是基于webpack3打造的
+   1. vue-cli3是基于webpack4打造的，vue-cli2是基于webpack3打造的
    2. vue-cli3的设计原则是 "0配置" ，移除的配置文件根目录下，build 和 config 等目录。
    3. vue-cli3提供了 vue ui 命令，提供了可视化配置，更加人性化。
    4. 移除了 static 文件夹，新增了public 文件夹，并且 index.html 移动到 public 中
@@ -559,6 +562,154 @@
    * save preset as：设置保存的名称
 3. Vue UI（vue配置的图形界面）
    * 启动的命令：vue UI
+
+#### 10.5 Cli3配置文件步骤详细介绍
+
+文档：https://cli.vuejs.org/zh/guide/
+ 条件：
+ npm 更至最新
+ node >=8.9
+
+1.全局安装  npm install -g @vue/cli   或  yarn global add @vue/cli
+
+2.查看版本/是否安装成功   vue -V
+
+
+
+![img](https:////upload-images.jianshu.io/upload_images/10133295-6ee0621e8c31b117.png?imageMogr2/auto-orient/strip|imageView2/2/w/292/format/webp)
+
+image.png
+
+3.在新文件夹下创建项目 vue create my-project
+
+
+
+![img](https:////upload-images.jianshu.io/upload_images/10133295-b1c80ff202b3cf6e.png?imageMogr2/auto-orient/strip|imageView2/2/w/534/format/webp)
+
+image.png
+
+
+
+指向的vuecli3是因为上一次记录过的cli3配置，第一次执行create是没有的
+ 按键盘上下键可以选择默认（default）还是手动（Manually），如果选择default，一路回车执行下去就行了
+ 继续手动一下
+
+
+
+![img](https:////upload-images.jianshu.io/upload_images/10133295-ac77ce4b261705bc.png?imageMogr2/auto-orient/strip|imageView2/2/w/526/format/webp)
+
+image.png
+
+4.选择配置，看个人项目需求
+ 注意，空格键是选中与取消，A键是全选
+ TypeScript 支持使用 TypeScript 书写源码
+ Progressive Web App (PWA) Support PWA 支持。
+ Router 支持 vue-router 。
+ Vuex 支持 vuex 。
+ CSS Pre-processors 支持 CSS 预处理器。
+ Linter / Formatter 支持代码风格检查和格式化。
+ Unit Testing 支持单元测试。
+ E2E Testing 支持 E2E 测试。
+
+
+
+![img](https:////upload-images.jianshu.io/upload_images/10133295-f17b2b49b630ea84.png?imageMogr2/auto-orient/strip|imageView2/2/w/461/format/webp)
+
+image.png
+
+5.css的预处理，我选择的是stylus
+
+
+
+![img](https:////upload-images.jianshu.io/upload_images/10133295-eb4b47356cd49814.png?imageMogr2/auto-orient/strip|imageView2/2/w/839/format/webp)
+
+image.png
+
+6.我选择的是ESLint + Prettier
+
+
+
+![img](https:////upload-images.jianshu.io/upload_images/10133295-2af21a86335a073f.png?imageMogr2/auto-orient/strip|imageView2/2/w/812/format/webp)
+
+image.png
+
+7.选择语法检查方式，我自己选择保存就检测
+ 第一个是保存检测，第二个是fix和commit的时候检测
+
+
+
+![img](https:////upload-images.jianshu.io/upload_images/10133295-ccf520d5835641fa.png?imageMogr2/auto-orient/strip|imageView2/2/w/860/format/webp)
+
+image.png
+
+8.单元测试，我选择了Mocha
+
+
+
+![img](https:////upload-images.jianshu.io/upload_images/10133295-b56e4dbc801c9209.png?imageMogr2/auto-orient/strip|imageView2/2/w/814/format/webp)
+
+image.png
+
+9.配置文件存放地方
+ 第一个是独立文件夹位置，第二个是在package.json文件里
+
+
+
+![img](https:////upload-images.jianshu.io/upload_images/10133295-9dfa74e706107a64.png?imageMogr2/auto-orient/strip|imageView2/2/w/822/format/webp)
+
+image.png
+
+10.询问是否记录这一次的配置，以便下次使用，如一开始的时候会显示的vuecli3配置
+
+
+
+![img](https:////upload-images.jianshu.io/upload_images/10133295-94f213be5ae7b5be.png?imageMogr2/auto-orient/strip|imageView2/2/w/891/format/webp)
+
+image.png
+
+11.回车确定等待下载
+
+
+
+![img](https:////upload-images.jianshu.io/upload_images/10133295-d28e8ae129961702.png?imageMogr2/auto-orient/strip|imageView2/2/w/852/format/webp)
+
+image.png
+
+12.装好后，启动
+ cd  my-project  // 进入到项目根目录
+ npm run serve  // 启动项目
+
+
+
+![img](https:////upload-images.jianshu.io/upload_images/10133295-3ecca1b0ae9d0873.png?imageMogr2/auto-orient/strip|imageView2/2/w/411/format/webp)
+
+image.png
+
+
+
+![img](https:////upload-images.jianshu.io/upload_images/10133295-121f0060264d0f90.png?imageMogr2/auto-orient/strip|imageView2/2/w/850/format/webp)
+
+image.png
+
+13.3.0的目录比2.0简洁了很多，没了build和config等目录。若需要其他配置则需要自己手动配置了呢
+
+
+
+![img](https:////upload-images.jianshu.io/upload_images/10133295-e0d80b23b3b34d2f.png?imageMogr2/auto-orient/strip|imageView2/2/w/322/format/webp)
+
+image.png
+
+基本就酱紫啦~
+
+如果你仍然需要使用旧版本的 vue init 功能，你可以全局安装一个桥接工具
+ npm install -g @vue/cli-init
+ vue init webpack my-project
+
+
+
+![img](https:////upload-images.jianshu.io/upload_images/10133295-59c6eff0fbe9e4c2.png?imageMogr2/auto-orient/strip|imageView2/2/w/847/format/webp)
+
+image.png
 
 
 
