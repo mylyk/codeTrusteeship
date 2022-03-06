@@ -1184,23 +1184,37 @@ image.png
    export default store;
    ```
 
-   
-
-5. vuex中调用定义的`store`<br>
+5. 在 `main.js` 中引入store
 
    ```js
-   $store.state.[state中定义的data]
+   import store from './store';
+   
+   new Vue({
+     router,
+     store,
+     render: h => h(App),
+   }).$mount('#app')
    ```
 
    
 
-6. 常用的那些状态需要组件中共享等，如下这些信息我们可以存放在`store`中进行管理。
+6. vuex中调用定义的`store`<br>
+
+   ```js
+   $store.state.[state中定义的data]
+   
+   this.$store.state.[state中定义的data]
+   ```
+
+   
+
+7. 常用的那些状态需要组件中共享等，如下这些信息我们可以存放在`store`中进行管理。
 
    * 用户的登录信息
    * 某一个状态是多页面共享的
    * 商品的收藏，购物车中物品
 
-7. Vuex里面的核心概念
+8. Vuex里面的核心概念
    * State：单一状态树
 
    * Getters：可以认为是 **Vuex** 的计算属性。就像计算属性一样，getter的返回值会根据它的依赖被缓存起来，只有当值发生改变才会被重新计算；启动被定义的方法也会默认传入一个 **state** 形参。
@@ -1242,7 +1256,7 @@ image.png
            }
        ```
 
-8. 项目结构 （Vuex 并不限制你的代码结构。但是，它规定了一些需要遵守的规则：）
+9. 项目结构 （Vuex 并不限制你的代码结构。但是，它规定了一些需要遵守的规则：）
 
    1. 应用层级的状态应该集中到单个 store 对象中。
 
