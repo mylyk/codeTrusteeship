@@ -129,7 +129,8 @@ vue init webpack my-project
 1. 在 JavaScript 被导入或在 template/CSS 中通过相对路径被引用。这类引用会被 webpack 处理。
 2. 放置在 `public` 目录下或通过绝对路径被引用。这类资源将会直接被拷贝，而不会经过 webpack 的处理。
 
-![image-20220330115928461](G:\HTML\01_前端\01codeTrusteeship(代码托管)\codeTrusteeship\Vue笔记\image-20220330115928461.png) 
+![image-20220330115928461](https://user-images.githubusercontent.com/27943280/166153966-1faeca83-d6e3-4df1-bbd0-e8612eb48b40.png)
+
 
 #### 从相对路径导入
 
