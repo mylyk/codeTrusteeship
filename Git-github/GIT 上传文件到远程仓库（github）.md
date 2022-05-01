@@ -1,4 +1,6 @@
-### 一 . GIT 上传文件到远程仓库（github）
+# GIT 上传文件到远程仓库（github）
+
+###  一 . 本地相关操作
 
 #### 1.1 本地git相关操作
 
@@ -13,7 +15,7 @@
 4. 提交日志
    * `git commit -m "日志描述"` 
 5. 提交文件、代码
-   * `git pull <远程主机名> <远程分支名>` 
+   * `git push <远程主机名origin> <远程分支名>` 
 
 
 
@@ -96,3 +98,104 @@
 1. 由于本地的更改所以没有拉取成功，可以这样解决：
    1. 先使用`git stash`将本地修改储存起来。
    2. 然后再`git pull` ；这里建议使用完整的命令`git pull orgin master` 
+
+
+
+# 常用操作
+
+## git上传如何忽略node_modules
+
+> 参考链接：https://www.cnblogs.com/wangRong-smile/articles/11607458.html
+
+### 一. 创建.gitignore文件
+
+1. 点击项目文件，右键选择Git Bash进入命令行，输入touch .gitignore，生成.gitignore文件
+2. 在生成的.gitignore文件里输入你要忽略的文件件及其文件即可。
+
+### 二.配置规则：
+
+1. /mtk/ 过滤整个文件夹，例：node_modules/
+2. ip *.z 过滤zip后缀文件
+3. /mtk/do.c 过滤该文件，例：demo.html
+4. 前面加 ！，表示不过滤此项，例：!src/ 或者 !*.js 或者 !index.html
+
+### 三.提交时忽略文件命令
+
+```
+git commit -m ``"xx"` `--no-verify
+```
+
+
+
+
+
+## git将自己分支代码提交到dev分支
+
+### 简单的代码提交流程
+
+1. git status #查看工作区代码相对于暂存区的差别
+2. git add . #将当前目录下修改的所有代码从工作区添加到暂存区 . 代表当前目录 add后面一个空格然后输入点
+3. git commit -m #‘注释’ 将缓存区内容添加到本地仓库
+4. git commit -m “备注” #可以合并成为git commit -a -m “备注”
+5. git pull #拉下git最新代码，必须要执行，不然会覆盖掉别人刚提交过的代码。
+6. git push origin master #将本地版本库推送到远程服务器，
+7. origin #是远程主机，master表示是远程服务器上的master分支，分支名是可以修改成其他分支 的名字的
+
+
+
+提交代码教程
+
+首先查看自己在那个分支如果在自己想提交的分支就无需更改
+
+git branch -a
+
+第一步先切换到自己想要提交的分支
+
+git checkout dev
+dev是我所要提交的分支所以先切换好
+
+git status
+
+git add .
+执行完这一步骤下面出来得是警告不用管
+
+git commit -m "zabbix-server_install"
+执行完这一条命令之后需要你输入git得用户和密码
+
+双引号里面写zabbix-server_install是因为我提交的是zabbix的代码
+
+
+git pull origin dev
+
+git push origin dev
+dev是git上面的分支 提交的时候换成你分支的名字即可
+
+### Git自己分支合并dev分支
+
+```sh
+git push 自己分支 (⚠️ 我这里的push 忽略了上传代码的几个步骤喔)
+ git checkout dev 切换到dev分支 
+ git pull dev (拉取dev最新代码)
+ git merge 自己分支 (合并自己的代码到dev)
+ git push dev (此时dev分支是最新的)
+ git checkotut 自己分支 
+ git merge dev(合并完毕)
+```
+
+
+
+### 拉取dev分支最新代码
+
+```sh
+git pull origin dev
+```
+
+
+
+# vscode用git上传代码
+
+> 参考链接：
+>
+> https://blog.csdn.net/weixin_44994731/article/details/109305995
+>
+> https://blog.csdn.net/Miss_liangrm/article/details/98025128
